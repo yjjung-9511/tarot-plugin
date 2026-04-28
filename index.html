@@ -292,19 +292,26 @@
   </div>
 
   <div class="install-tabs">
-    <button class="tab active" onclick="switchTab('ps')">PowerShell</button>
+    <button class="tab active" onclick="switchTab('win')">Windows</button>
+    <button class="tab" onclick="switchTab('mac')">Mac</button>
     <button class="tab" onclick="switchTab('cc')">Claude Code 채팅창</button>
   </div>
 
-  <div class="install-box" id="tab-ps">
+  <div class="install-box" id="tab-win">
     <div class="install-label">PowerShell을 열고 실행</div>
-    <div class="install-cmd" id="cmd-ps">irm https://raw.githubusercontent.com/yjjung-9511/tarot-plugin/master/install.ps1 | iex</div>
-    <button class="copy-btn" onclick="copyCmd('cmd-ps')">복사</button>
+    <div class="install-cmd" id="cmd-win">irm https://raw.githubusercontent.com/yjjung-9511/tarot-plugin/master/install.ps1 | iex</div>
+    <button class="copy-btn" onclick="copyCmd('cmd-win')">복사</button>
+  </div>
+
+  <div class="install-box" id="tab-mac" style="display:none">
+    <div class="install-label">터미널을 열고 실행</div>
+    <div class="install-cmd" id="cmd-mac">curl -fsSL https://raw.githubusercontent.com/yjjung-9511/tarot-plugin/master/install.sh | bash</div>
+    <button class="copy-btn" onclick="copyCmd('cmd-mac')">복사</button>
   </div>
 
   <div class="install-box" id="tab-cc" style="display:none">
-    <div class="install-label">Claude Code 채팅창에 붙여넣기</div>
-    <div class="install-cmd" id="cmd-cc">PowerShell로 이 명령어 실행해줘: irm https://raw.githubusercontent.com/yjjung-9511/tarot-plugin/master/install.ps1 | iex</div>
+    <div class="install-label">Claude Code 채팅창에 붙여넣기 (Windows · Mac 공통)</div>
+    <div class="install-cmd" id="cmd-cc">타로 플러그인 설치해줘: https://tarot-plugin-site.vercel.app</div>
     <button class="copy-btn" onclick="copyCmd('cmd-cc')">복사</button>
   </div>
 
@@ -342,17 +349,16 @@
   </p>
 
   <script>
+    const TABS = ['win', 'mac', 'cc'];
     function switchTab(tab) {
-      document.getElementById('tab-ps').style.display = tab === 'ps' ? '' : 'none';
-      document.getElementById('tab-cc').style.display = tab === 'cc' ? '' : 'none';
-      document.querySelectorAll('.tab').forEach((el, i) => {
-        el.classList.toggle('active', (tab === 'ps' && i === 0) || (tab === 'cc' && i === 1));
+      TABS.forEach((t, i) => {
+        document.getElementById('tab-' + t).style.display = t === tab ? '' : 'none';
+        document.querySelectorAll('.tab')[i].classList.toggle('active', t === tab);
       });
     }
     function copyCmd(id) {
       navigator.clipboard.writeText(document.getElementById(id).textContent).then(() => {
-        const btns = document.querySelectorAll('.copy-btn');
-        const btn = id === 'cmd-ps' ? btns[0] : btns[1];
+        const btn = document.getElementById(id).nextElementSibling;
         btn.textContent = '복사됨 ✓';
         setTimeout(() => { btn.textContent = '복사'; }, 2000);
       });
