@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>✦ 타로 플러그인 — Claude Code</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d0d1a;
+      color: #c8c8e0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      gap: 0.25rem;
+    }
+    .dim    { color: #505070; font-size: 0.9rem; }
+    .cyan   { color: #00c8c8; font-family: monospace; font-size: 1.25rem; line-height: 2; }
+    .name   { color: #e0e0ff; font-weight: 600; margin: 0.5rem 0 0.25rem; }
+    .msg    { color: #505070; font-size: 0.82rem; margin-bottom: 2rem; }
+
+    h1 {
+      color: #d0c8ff;
+      font-size: 1.6rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.4rem;
+    }
+    .subtitle {
+      color: #606080;
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+    }
+
+    .steps {
+      max-width: 480px;
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+    .step {
+      display: flex;
+      gap: 1rem;
+      margin: 0.75rem 0;
+      align-items: flex-start;
+    }
+    .step-num {
+      background: #1e1e3a;
+      color: #8080d0;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.72rem;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    .step-text { color: #8888aa; font-size: 0.88rem; line-height: 1.55; }
+    .step-text strong { color: #c0c0e0; }
+    code { color: #00a8a8; font-family: monospace; font-size: 0.85rem; }
+
+    .install-box {
+      background: #111128;
+      border: 1px solid #2a2a60;
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      max-width: 520px;
+      width: 100%;
+      margin-bottom: 0.75rem;
+    }
+    .install-label {
+      color: #404060;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.6rem;
+    }
+    .install-cmd {
+      font-family: 'Cascadia Code', 'Fira Code', monospace;
+      color: #00c8c8;
+      font-size: 0.9rem;
+      word-break: break-all;
+    }
+    .copy-btn {
+      display: inline-block;
+      margin-top: 0.9rem;
+      background: #1e1e40;
+      color: #8080c0;
+      border: 1px solid #3030a0;
+      border-radius: 5px;
+      padding: 0.35rem 0.9rem;
+      cursor: pointer;
+      font-size: 0.78rem;
+      transition: background 0.15s, color 0.15s;
+    }
+    .copy-btn:hover { background: #28286a; color: #c0c0ff; }
+
+    .prereq {
+      color: #3c3c5a;
+      font-size: 0.78rem;
+      text-align: center;
+      margin-top: 1.25rem;
+      line-height: 1.8;
+    }
+    .prereq a { color: #4848a0; text-decoration: none; }
+    .prereq a:hover { color: #7070d0; }
+  </style>
+</head>
+<body>
+  <div class="dim">✦ Today's Tarot ✦</div>
+  <div class="cyan">
+    ⚡ · ▶ · ⚡<br>
+    (▶_◀)ノ<br>
+    · ≣≣≣ ·
+  </div>
+  <div class="name">[전차]</div>
+  <div class="msg">집중력을 유지하고 흔들리지 마세요. 지금의 노력은 반드시 결실을 맺습니다</div>
+
+  <h1>✦ 타로 플러그인</h1>
+  <p class="subtitle">Claude Code 시작 시 매일 메이저 아르카나 한 장을 뽑아 하루를 점칩니다</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-text">
+        <strong>Node.js</strong> 설치 확인 — PowerShell에서
+        <code>node --version</code> 실행 후 버전이 뜨면 OK.<br>
+        없으면 <a href="https://nodejs.org" target="_blank" style="color:#4848a0">nodejs.org</a>에서 LTS 설치
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-text">
+        <strong>PowerShell을 열고</strong> 아래 명령어를 붙여넣어 실행
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-text">
+        <strong>Claude Code 재시작</strong> — 오늘의 카드가 바로 표시됩니다
+      </div>
+    </div>
+  </div>
+
+  <div class="install-box">
+    <div class="install-label">PowerShell 설치 명령어</div>
+    <div class="install-cmd" id="cmd">irm https://VERCEL_URL/install.ps1 | iex</div>
+    <button class="copy-btn" onclick="copyCmd()">복사</button>
+  </div>
+
+  <p class="prereq">
+    필요 조건: Node.js · Claude Code<br>
+    팀원 각자가 독립적으로 카드를 뽑으며, 하루 한 번 자정에 갱신됩니다<br>
+    <code style="color:#3a3a60;font-size:0.75rem">/타로</code> 슬래시 커맨드로 낮 중에도 재확인 가능
+  </p>
+
+  <script>
+    function copyCmd() {
+      navigator.clipboard.writeText(document.getElementById('cmd').textContent).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = '복사됨 ✓';
+        setTimeout(() => { btn.textContent = '복사'; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
