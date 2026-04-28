@@ -16,107 +16,182 @@
       align-items: center;
       justify-content: center;
       padding: 2rem;
-      gap: 0.25rem;
+      gap: 0;
     }
-    .dim    { color: #505070; font-size: 0.9rem; }
-    .cyan   { color: #00c8c8; font-family: monospace; font-size: 1.25rem; line-height: 2; }
-    .name   { color: #e0e0ff; font-weight: 600; margin: 0.5rem 0 0.25rem; }
-    .msg    { color: #505070; font-size: 0.82rem; margin-bottom: 2rem; }
 
+    /* ── 터미널 모형 ── */
+    .terminal {
+      background: #111120;
+      border: 1px solid #2a2a50;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 420px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 0 1px #1a1a38;
+      margin-bottom: 2.5rem;
+    }
+    .terminal-bar {
+      background: #1a1a30;
+      padding: 0.55rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      border-bottom: 1px solid #22223a;
+    }
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #febc2e; }
+    .dot-g { background: #28c840; }
+    .terminal-title {
+      flex: 1;
+      text-align: center;
+      font-size: 0.72rem;
+      color: #40405a;
+      margin-right: 2rem;
+      letter-spacing: 0.04em;
+    }
+    .terminal-body {
+      padding: 1.2rem 1.5rem 1.4rem;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.88rem;
+      line-height: 1.75;
+    }
+    .t-dim    { color: #505070; }
+    .t-cyan   { color: #00c0c0; }
+    .t-bold   { color: #e0e0ff; font-weight: 600; }
+    .t-prompt { color: #3a3a6a; }
+    .t-shuffle {
+      color: #00c0c0;
+      opacity: 0.7;
+      font-size: 0.78rem;
+    }
+    .shuffle-anim span { display: inline-block; animation: flicker 2.4s infinite; }
+    .shuffle-anim span:nth-child(2) { animation-delay: 0.15s; }
+    .shuffle-anim span:nth-child(3) { animation-delay: 0.3s; }
+    .shuffle-anim span:nth-child(4) { animation-delay: 0.45s; }
+    .shuffle-anim span:nth-child(5) { animation-delay: 0.6s; }
+    .shuffle-anim span:nth-child(6) { animation-delay: 0.75s; }
+    .shuffle-anim span:nth-child(7) { animation-delay: 0.9s; }
+    @keyframes flicker {
+      0%,100% { opacity: 0.4; }
+      50%      { opacity: 1; }
+    }
+    .blank { height: 0.3rem; }
+
+    /* ── 텍스트 섹션 ── */
     h1 {
       color: #d0c8ff;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 300;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       margin-bottom: 0.4rem;
+      text-align: center;
     }
     .subtitle {
-      color: #606080;
-      font-size: 0.85rem;
+      color: #555575;
+      font-size: 0.83rem;
       margin-bottom: 2rem;
+      text-align: center;
     }
-
     .steps {
-      max-width: 480px;
+      max-width: 420px;
       width: 100%;
       margin-bottom: 1.5rem;
     }
     .step {
       display: flex;
-      gap: 1rem;
-      margin: 0.75rem 0;
+      gap: 0.9rem;
+      margin: 0.7rem 0;
       align-items: flex-start;
     }
     .step-num {
-      background: #1e1e3a;
-      color: #8080d0;
-      width: 22px; height: 22px;
+      background: #1a1a34;
+      color: #7070c0;
+      width: 21px; height: 21px;
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       flex-shrink: 0;
       margin-top: 0.15rem;
     }
-    .step-text { color: #8888aa; font-size: 0.88rem; line-height: 1.55; }
-    .step-text strong { color: #c0c0e0; }
-    code { color: #00a8a8; font-family: monospace; font-size: 0.85rem; }
+    .step-text { color: #7878a0; font-size: 0.86rem; line-height: 1.55; }
+    .step-text strong { color: #b8b8d8; }
+    code { color: #00a8a8; font-family: monospace; font-size: 0.83rem; }
 
     .install-box {
-      background: #111128;
-      border: 1px solid #2a2a60;
-      border-radius: 10px;
-      padding: 1.2rem 1.5rem;
-      max-width: 520px;
+      background: #0e0e22;
+      border: 1px solid #252555;
+      border-radius: 9px;
+      padding: 1.1rem 1.4rem;
+      max-width: 420px;
       width: 100%;
       margin-bottom: 0.75rem;
     }
     .install-label {
-      color: #404060;
-      font-size: 0.7rem;
+      color: #353555;
+      font-size: 0.68rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.55rem;
     }
     .install-cmd {
       font-family: 'Cascadia Code', 'Fira Code', monospace;
-      color: #00c8c8;
-      font-size: 0.9rem;
+      color: #00c0c0;
+      font-size: 0.88rem;
       word-break: break-all;
     }
     .copy-btn {
       display: inline-block;
-      margin-top: 0.9rem;
-      background: #1e1e40;
-      color: #8080c0;
-      border: 1px solid #3030a0;
+      margin-top: 0.85rem;
+      background: #1a1a3a;
+      color: #7070b0;
+      border: 1px solid #2a2a60;
       border-radius: 5px;
-      padding: 0.35rem 0.9rem;
+      padding: 0.32rem 0.85rem;
       cursor: pointer;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       transition: background 0.15s, color 0.15s;
     }
-    .copy-btn:hover { background: #28286a; color: #c0c0ff; }
+    .copy-btn:hover { background: #252560; color: #b0b0e8; }
 
     .prereq {
-      color: #3c3c5a;
-      font-size: 0.78rem;
+      color: #323248;
+      font-size: 0.76rem;
       text-align: center;
-      margin-top: 1.25rem;
-      line-height: 1.8;
+      margin-top: 1.2rem;
+      line-height: 1.9;
     }
-    .prereq a { color: #4848a0; text-decoration: none; }
-    .prereq a:hover { color: #7070d0; }
+    .prereq a { color: #3a3a80; text-decoration: none; }
+    .prereq a:hover { color: #6868c0; }
   </style>
 </head>
 <body>
-  <div class="dim">✦ Today's Tarot ✦</div>
-  <div class="cyan">
-    ⚡ · ▶ · ⚡<br>
-    (▶_◀)ノ<br>
-    · ≣≣≣ ·
+
+  <!-- 터미널 모형 -->
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="dot dot-r"></div>
+      <div class="dot dot-y"></div>
+      <div class="dot dot-g"></div>
+      <div class="terminal-title">claude — bash</div>
+    </div>
+    <div class="terminal-body">
+      <div class="t-prompt">$ claude</div>
+      <div class="blank"></div>
+      <div class="t-shuffle shuffle-anim">
+        <span>★</span>&nbsp;<span>◈</span>&nbsp;<span>✦</span>&nbsp;<span>†</span>&nbsp;<span>☽</span>&nbsp;<span>⊛</span>&nbsp;<span>☀</span>
+      </div>
+      <div class="blank"></div>
+      <div class="t-dim">✦ Today's Tarot ✦</div>
+      <div class="blank"></div>
+      <div class="t-cyan">⚡ · ▶ · ⚡</div>
+      <div class="t-cyan">(▶_◀)ノ</div>
+      <div class="t-cyan">· ≣≣≣ ·</div>
+      <div class="blank"></div>
+      <div class="t-bold">[전차]</div>
+      <div class="t-dim" style="font-size:0.8rem">집중력을 유지하고 흔들리지 마세요</div>
+    </div>
   </div>
-  <div class="name">[전차]</div>
-  <div class="msg">집중력을 유지하고 흔들리지 마세요. 지금의 노력은 반드시 결실을 맺습니다</div>
 
   <h1>✦ 타로 플러그인</h1>
   <p class="subtitle">Claude Code 시작 시 매일 메이저 아르카나 한 장을 뽑아 하루를 점칩니다</p>
@@ -125,9 +200,9 @@
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-text">
-        <strong>Node.js</strong> 설치 확인 — PowerShell에서
-        <code>node --version</code> 실행 후 버전이 뜨면 OK.<br>
-        없으면 <a href="https://nodejs.org" target="_blank" style="color:#4848a0">nodejs.org</a>에서 LTS 설치
+        <strong>Node.js</strong> 설치 확인 —
+        PowerShell에서 <code>node --version</code> 실행 후 버전이 뜨면 OK.<br>
+        없으면 <a href="https://nodejs.org" target="_blank" style="color:#3a3a80">nodejs.org</a>에서 LTS 설치
       </div>
     </div>
     <div class="step">
@@ -146,14 +221,17 @@
 
   <div class="install-box">
     <div class="install-label">PowerShell 설치 명령어</div>
-    <div class="install-cmd" id="cmd">irm https://tarot-plugin-site.vercel.app/install.ps1 | iex</div>
+    <div class="install-cmd" id="cmd">irm https://raw.githubusercontent.com/yjjung-9511/tarot-plugin/master/install.ps1 | iex</div>
     <button class="copy-btn" onclick="copyCmd()">복사</button>
   </div>
 
   <p class="prereq">
     필요 조건: Node.js · Claude Code<br>
     팀원 각자가 독립적으로 카드를 뽑으며, 하루 한 번 자정에 갱신됩니다<br>
-    <code style="color:#3a3a60;font-size:0.75rem">/타로</code> 슬래시 커맨드로 낮 중에도 재확인 가능
+    <code style="color:#2a2a50;font-size:0.73rem">/타로</code>
+    또는
+    <code style="color:#2a2a50;font-size:0.73rem">/tarot</code>
+    으로 낮 중에도 재확인 가능
   </p>
 
   <script>
