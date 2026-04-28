@@ -1,8 +1,8 @@
 # 타로 플러그인 원클릭 설치 스크립트
 # 사용법: PowerShell에서 아래 명령어 실행
-#   irm https://tarot-plugin-site.vercel.app/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/yjjung-9511/tarot-plugin/master/install.ps1 | iex
 
-$baseUrl      = "https://tarot-plugin-site.vercel.app"
+$baseUrl      = "https://raw.githubusercontent.com/yjjung-9511/tarot-plugin/master"
 $userHome     = $env:USERPROFILE
 $tarotDest    = "$userHome\.claude\tarot"
 $commandsDest = "$userHome\.claude\commands"
