@@ -15,7 +15,7 @@ function displayCard(card) {
   console.log(`  ${CYAN}${card.art[1]}${RESET}`);
   console.log(`  ${CYAN}${card.art[2]}${RESET}`);
   console.log("");
-  console.log(`  ${BOLD}[${card.name}]${RESET}`);
+  console.log(`  ${BOLD}[${card.name}]${RESET}  ${DIM}(${card.id}. ${card.nameEn})${RESET}`);
   console.log(`  ${DIM}${card.message}${RESET}`);
   console.log("");
 }
